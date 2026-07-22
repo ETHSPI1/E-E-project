@@ -1,15 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La Familia Barbers</title>
+    <link rel="icon" href="images/images.jpg" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
 <body>
-  <nav>
-    <ul>
-        <h1>hi am ethan</h1>
-    </ul>
-  </nav>
+    <nav class="navbar">
+        <a href="index.html" class="brand">
+            <img class="brand-logo" src="images/images.jpg" alt="La Familia Barbers logo">
+            <span>La Familia<em>Barbers</em></span>
+        </a>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="#services">Service</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="home">
+        <span class="eyebrow"><i class="fa-solid fa-scissors"></i> Est. by the family, for the family</span>
+        <div class="home-text">
+            <h1>Magic <span class="grad">in every cut</span></h1>
+            <p>At La Familia Barbers we're more than just a barbershop — we're a place where style meets confidence.
+                Every client gets personal attention, honest craftsmanship, and a chair worth sitting in.
+                From sharp fades and classic cuts to beard grooming and modern styles, we're committed to
+                helping you look your best and walk out feeling even better.</p>
+            <div class="hero-actions">
+                <button type="button" class="btn btn-primary"><i class="fa-solid fa-scissors"></i> What we do</button>
+                <button type="button" class="btn btn-ghost-light"><i class="fa-solid fa-phone"></i> Get in touch</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="strip" aria-hidden="true">
+        <span><i class="fa-solid fa-scissors"></i> Fades</span>
+        <span><i class="fa-solid fa-scissors"></i> Tapers</span>
+        <span><i class="fa-solid fa-scissors"></i> Beard Grooming</span>
+        <span><i class="fa-solid fa-scissors"></i> Hot Towel Shaves</span>
+        <span><i class="fa-solid fa-scissors"></i> Kids Cuts</span>
+        <span><i class="fa-solid fa-scissors"></i> Line-ups</span>
+    </section>
+    
+    <section id="services" class="services">
+        <span class="eyebrow center"><i class="fa-solid fa-star"></i> What we do</span>
+        <h2>Craft, not conveyor belts</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <i class="fa-solid fa-scissors"></i>
+                <h3>Precision Cuts</h3>
+                <p>Fades, tapers and classic cuts, shaped to your head and your week — not a template.</p>
+                <i class="fa fa-whatsapp" aria-hidden="true"></i>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-pump-soap"></i>
+                <h3>Hot Towel Shave</h3>
+                <p>A straight razor shave finished with hot towels and balm, done the old way, on purpose.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-mound"></i>
+                <h3>Beard Sculpting</h3>
+                <p>Lined, shaped and conditioned so your beard actually looks intentional.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-child"></i>
+                <h3>Kids Cuts</h3>
+                <p>Patient hands, quick chairs, and a first haircut they won't dread the next one.</p>
+            </div>
+        </div>
+    </section>
+<section id="about" class="about">
+        <div class="about-photo">
+      <video width="360" height="640" autoplay loop muted playsinline style="object-fit: cover; border-radius: 12px;">
+    <source src="images/video-aboutus.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+        </div>
+        <div class="about-copy">
+            <span class="eyebrow"><i class="fa-solid fa-people-roof"></i> Our story</span>
+            <h2>Run by family, built for the neighborhood</h2>
+            <p>La Familia Barbers started at one chair and one clipper, and grew because people kept coming back
+                and bringing someone with them. We still greet you by name, still remember how you like your
+                fade, and still treat the shop like it belongs to everyone who walks in.</p>
+            <ul class="about-list">
+                <li><i class="fa-solid fa-check"></i> Walk in welcomed, regulars remembered</li>
+                <li><i class="fa-solid fa-check"></i> Sanitized tools, every client, every time</li>
+                <li><i class="fa-solid fa-check"></i> No rush your cut takes as long as it needs</li>
+            </ul>
+        </div>
+    </section>
+
+    
+
+    <footer class="footer">
+        <p>&copy; <span id="year"></span> La Familia Barbers. Cut with pride.</p>
+        <style>
+  .fa-instagram { color: #E4405F; } /* flat approximation, see gradient below for true look */
+  .fa-facebook  { color: #1877F2; }
+  .fa-tiktok    { color: #000000; } /* TikTok's primary mark is black */  
+
+</style>
+
+<a href="https://instagram.com/yourpage" target="_blank"><i class="fa-brands fa-instagram fa-2x"></i></a>
+  <a href="https://facebook.com/yourpage" target="_blank"><i class="fa-brands fa-facebook fa-2x"></i></a>
+  <a href="https://tiktok.com/@yourpage" target="_blank"><i class="fa-brands fa-tiktok fa-2x"></i></a>
+    </footer>
+    
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+        const navToggle = document.getElementById("navToggle");
+        const navLinks = document.getElementById("navLinks");
+        navToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("open");
+            navToggle.classList.toggle("open");
+        });
+    </script>
 </body>
 </html>
