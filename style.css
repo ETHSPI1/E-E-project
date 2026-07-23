@@ -290,7 +290,7 @@ a {
     margin: 0 auto;
     padding: 96px 24px 72px;
     text-align: center;
-}
+}   
 
 .services h2 {
     font-size: clamp(1.8rem, 3.2vw, 2.4rem);
@@ -710,4 +710,275 @@ a {
     .hero-actions .btn {
         width: 100%;
     }
+}
+/* ===========================
+   SERVICES TABS
+===========================*/
+
+.tabs{
+    margin-top:50px;
+}
+
+.tab-input{
+    display:none;
+}
+
+.tab-labels{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:45px;
+}
+
+.tab-label{
+    padding:14px 32px;
+    border:2px solid var(--gold);
+    border-radius:50px;
+    cursor:pointer;
+    font-family:var(--font-head);
+    font-weight:600;
+    color:var(--gold);
+    background:#fff;
+    transition:.3s;
+}
+
+.tab-label:hover{
+    background:var(--gold);
+    color:#fff;
+}
+
+/* Active Tabs */
+
+#tab-men:checked ~ .tab-labels label[for="tab-men"],
+#tab-women:checked ~ .tab-labels label[for="tab-women"],
+#tab-nails:checked ~ .tab-labels label[for="tab-nails"]{
+
+    background:linear-gradient(135deg,var(--gold-light),var(--gold));
+    color:white;
+    box-shadow:0 12px 25px rgba(184,137,46,.3);
+
+}
+
+/* Panels */
+
+.tab-panel{
+    display:none;
+    animation:fade .4s ease;
+}
+
+#tab-men:checked ~ #panel-men,
+#tab-women:checked ~ #panel-women,
+#tab-nails:checked ~ #panel-nails{
+
+    display:block;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+transform:translateY(15px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+/* ===========================
+   SERVICE GRID
+===========================*/
+
+.service-menu-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+
+}
+
+/* ===========================
+   CARD
+===========================*/
+
+.service-menu-card{
+
+background:#fff;
+
+border:1px solid var(--line);
+
+border-radius:20px;
+
+padding:35px 28px;
+
+text-align:center;
+
+transition:.35s;
+
+box-shadow:0 8px 25px rgba(0,0,0,.05);
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:space-between;
+
+}
+
+.service-menu-card:hover{
+
+transform:translateY(-8px);
+
+border-color:var(--gold);
+
+box-shadow:0 20px 40px rgba(184,137,46,.20);
+
+}
+
+/* Icons */
+
+.service-menu-card i{
+
+font-size:42px;
+
+color:var(--gold);
+
+margin-bottom:18px;
+
+}
+
+/* Title */
+
+.service-menu-card h3{
+
+font-size:26px;
+
+margin-bottom:12px;
+
+color:var(--ink);
+
+}
+
+/* Description */
+
+.service-menu-card p{
+
+font-size:.95rem;
+
+color:var(--muted);
+
+margin-bottom:25px;
+
+line-height:1.7;
+
+}
+
+/* Price */
+
+.price{
+
+display:block;
+
+font-family:var(--font-display);
+
+font-size:30px;
+
+font-weight:bold;
+
+color:var(--gold);
+
+margin-bottom:25px;
+
+}
+
+/* ===========================
+   BUTTON
+===========================*/
+
+.book-btn{
+
+display:inline-flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:14px 24px;
+
+border-radius:50px;
+
+background:linear-gradient(135deg,var(--gold-light),var(--gold));
+
+color:#fff;
+
+font-family:var(--font-head);
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.book-btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 14px 25px rgba(184,137,46,.35);
+
+background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+
+}
+
+/* ===========================
+   MOBILE
+===========================*/
+
+@media(max-width:768px){
+
+.tab-labels{
+
+gap:10px;
+
+}
+
+.tab-label{
+
+width:100%;
+
+text-align:center;
+
+}
+
+.service-menu-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.service-menu-card{
+
+padding:30px 22px;
+
+}
+
+.service-menu-card h3{
+
+font-size:22px;
+
+}
+
+.price{
+
+font-size:26px;
+
+}
+
 }

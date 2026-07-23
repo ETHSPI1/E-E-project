@@ -5,8 +5,795 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>La Familia Barbers</title>
     <link rel="icon" href="images/images.jpg" />
-    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <style>
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@500;600;700&family=Open+Sans:wght@400;500;600&display=swap");
+
+/* ===== Tokens ===== */
+:root {
+    --ink: #1c1a16;
+    --muted: #6b6459;
+    --line: #e9e1cf;
+    --bg: #ffffff;
+    --ivory: #fffdf8;
+    --gold: #b8892e;
+    --gold-deep: #8a651f;
+    --gold-light: #e9c877;
+    --gold-pale: #f6ecd2;
+
+    --font-display: "Playfair Display", serif;
+    --font-head: "Poppins", sans-serif;
+    --font-body: "Open Sans", sans-serif;
+    --nav-height: 76px;
+    --max: 1120px;
+}
+
+/* ===== Base ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-head);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+}
+
+.eyebrow.center {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 10px;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    background: rgba(255, 253, 248, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: var(--ink);
+}
+
+.brand em {
+    font-style: normal;
+    color: var(--gold);
+}
+
+.brand-logo {
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--gold);
+    box-shadow: 0 2px 8px rgba(184, 137, 46, 0.25);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+}
+
+.nav-links a {
+    display: inline-block;
+    padding: 9px 16px;
+    font-family: var(--font-head);
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--muted);
+    border-radius: 999px;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--ink);
+    background: var(--gold-pale);
+}
+
+.nav-links a.active::hover {
+    color: var(--ink);
+    background: var(--gold-pale);
+}
+
+/* ===== Hamburger (mobile) ===== */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.nav-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* ===== Gradient text ===== */
+.grad {
+    background: linear-gradient(100deg, var(--gold-deep) 10%, var(--gold-light) 55%, var(--gold-deep) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ===== Buttons ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 48px;
+    padding: 12px 26px;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    font-family: var(--font-head);
+    font-size: 0.98rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-primary {
+    color: #241a06;
+    background: linear-gradient(100deg, var(--gold-light), var(--gold));
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(184, 137, 46, 0.35);
+}
+
+.btn-ghost-light {
+    color: #fff;
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.55);
+}
+
+.btn-ghost-light:hover {
+    color: var(--ink);
+    background: #fff;
+    border-color: #fff;
+}
+
+/* ===== Home / Hero ===== */
+.home {
+    min-height: calc(100dvh - var(--nav-height));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 22px;
+    padding: 80px 24px 60px;
+    color: #fff;
+    background:
+        linear-gradient(160deg, rgba(15, 12, 6, 0.82), rgba(20, 15, 6, 0.78)),
+    url("images/barber\ tools.png") center / cover no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.home .eyebrow {
+    color: var(--gold-light);
+}
+
+.home-text {
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.home-text h1 {
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    color: #fff;
+}
+
+.home-text p {
+    max-width: 620px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.02rem;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 6px;
+}
+
+/* ===== Scrolling strip (barber-pole feel) ===== */
+.strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        var(--gold) 0 26px,
+        var(--gold-deep) 26px 52px
+    );
+    padding: 14px 20px;
+}
+
+.strip span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 22px;
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.6px;
+    color: #241a06;
+    text-transform: uppercase;
+}
+
+/* ===== Services ===== */
+.services {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 96px 24px 72px;
+    text-align: center;
+}
+
+.services h2 {
+    font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+    margin-bottom: 46px;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+    text-align: left;
+}
+
+.service-card {
+    padding: 30px 26px;
+    background: var(--ivory);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold-light);
+    box-shadow: 0 16px 30px rgba(184, 137, 46, 0.16);
+}
+
+.service-card i {
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 14px;
+    display: block;
+}
+
+.service-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+}
+
+.service-card p {
+    color: var(--muted);
+    font-size: 0.94rem;
+}
+
+/* ===== About ===== */
+.about {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 72px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 56px;
+    align-items: center;
+}
+
+.about-photo img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(28, 26, 22, 0.12);
+}
+
+.about-copy h2 {
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    margin: 10px 0 16px;
+}
+
+.about-copy p {
+    color: var(--muted);
+    margin-bottom: 22px;
+}
+
+.about-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.about-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-head);
+    font-weight: 500;
+    font-size: 0.96rem;
+}
+
+.about-list i {
+    color: var(--gold);
+    background: var(--gold-pale);
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+}
+
+/* ===== Contact ===== */
+.contact {
+    background: var(--ivory);
+    border-top: 1px solid var(--line);
+    padding: 88px 24px;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    margin-bottom: 10px;
+}
+
+.contact-sub {
+    color: var(--muted);
+    margin-bottom: 42px;
+}
+
+.contact-grid {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+}
+
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 30px 20px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    font-family: var(--font-head);
+    font-weight: 600;
+    color: var(--ink);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold-light);
+    box-shadow: 0 16px 30px rgba(184, 137, 46, 0.16);
+}
+
+.contact-card i {
+    font-size: 1.6rem;
+    color: var(--gold);
+}
+
+/* ===== Footer ===== */
+.footer {
+    padding: 26px 24px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--muted);
+    border-top: 3px solid var(--ink);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 860px) {
+    .about {
+        grid-template-columns: 1fr;
+    }
+
+    .about-photo img {
+        aspect-ratio: 16 / 10;
+    }
+}
+
+@media (max-width: 720px) {
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--ivory);
+        border-bottom: 1px solid var(--line);
+        padding: 10px 20px 18px;
+        gap: 4px;
+        display: none;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 12px 14px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+}
+/* ===========================
+   SERVICES TABS
+===========================*/
+
+.tabs{
+    margin-top:50px;
+}
+
+.tab-input{
+    display:none;
+}
+
+.tab-labels{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:45px;
+}
+
+.tab-label{
+    padding:14px 32px;
+    border:2px solid var(--gold);
+    border-radius:50px;
+    cursor:pointer;
+    font-family:var(--font-head);
+    font-weight:600;
+    color:var(--gold);
+    background:#fff;
+    transition:.3s;
+}
+
+.tab-label:hover{
+    background:var(--gold);
+    color:#fff;
+}
+
+/* Active Tabs */
+
+#tab-men:checked ~ .tab-labels label[for="tab-men"],
+#tab-women:checked ~ .tab-labels label[for="tab-women"],
+#tab-nails:checked ~ .tab-labels label[for="tab-nails"]{
+
+    background:linear-gradient(135deg,var(--gold-light),var(--gold));
+    color:white;
+    box-shadow:0 12px 25px rgba(184,137,46,.3);
+
+}
+
+/* Panels */
+
+.tab-panel{
+    display:none;
+    animation:fade .4s ease;
+}
+
+#tab-men:checked ~ #panel-men,
+#tab-women:checked ~ #panel-women,
+#tab-nails:checked ~ #panel-nails{
+
+    display:block;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+transform:translateY(15px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+/* ===========================
+   SERVICE GRID
+===========================*/
+
+.service-menu-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+
+}
+
+/* ===========================
+   CARD
+===========================*/
+
+.service-menu-card{
+
+background:#fff;
+
+border:1px solid var(--line);
+
+border-radius:20px;
+
+padding:35px 28px;
+
+text-align:center;
+
+transition:.35s;
+
+box-shadow:0 8px 25px rgba(0,0,0,.05);
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:space-between;
+
+}
+
+.service-menu-card:hover{
+
+transform:translateY(-8px);
+
+border-color:var(--gold);
+
+box-shadow:0 20px 40px rgba(184,137,46,.20);
+
+}
+
+/* Icons */
+
+.service-menu-card i{
+
+font-size:42px;
+
+color:var(--gold);
+
+margin-bottom:18px;
+
+}
+
+/* Title */
+
+.service-menu-card h3{
+
+font-size:26px;
+
+margin-bottom:12px;
+
+color:var(--ink);
+
+}
+
+/* Description */
+
+.service-menu-card p{
+
+font-size:.95rem;
+
+color:var(--muted);
+
+margin-bottom:25px;
+
+line-height:1.7;
+
+}
+
+/* Price */
+
+.price{
+
+display:block;
+
+font-family:var(--font-display);
+
+font-size:30px;
+
+font-weight:bold;
+
+color:var(--gold);
+
+margin-bottom:25px;
+
+}
+
+/* ===========================
+   BUTTON
+===========================*/
+
+.book-btn{
+
+display:inline-flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:14px 24px;
+
+border-radius:50px;
+
+background:linear-gradient(135deg,var(--gold-light),var(--gold));
+
+color:#fff;
+
+font-family:var(--font-head);
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.book-btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 14px 25px rgba(184,137,46,.35);
+
+background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+
+}
+
+/* ===========================
+   MOBILE
+===========================*/
+
+@media(max-width:768px){
+
+.tab-labels{
+
+gap:10px;
+
+}
+
+.tab-label{
+
+width:100%;
+
+text-align:center;
+
+}
+
+.service-menu-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.service-menu-card{
+
+padding:30px 22px;
+
+}
+
+.service-menu-card h3{
+
+font-size:22px;
+
+}
+
+.price{
+
+font-size:26px;
+
+}
+
+}
+
+/* ===========================
+   SOCIAL ICONS
+===========================*/
+
+.fa-instagram { color: #E4405F; }
+.fa-facebook  { color: #1877F2; }
+.fa-tiktok    { color: #000000; }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -18,9 +805,10 @@
         <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
             <span></span>
             <span></span>
-            <span></span>
+            <span></span> 
+           
         </button>
-
+        
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="#services">Service</a></li>
@@ -54,32 +842,133 @@
     </section>
     
     <section id="services" class="services">
-        <span class="eyebrow center"><i class="fa-solid fa-star"></i> What we do</span>
-        <h2>Craft, not conveyor belts</h2>
-        <div class="service-grid">
-            <div class="service-card">
-                <i class="fa-solid fa-scissors"></i>
-                <h3>Precision Cuts</h3>
-                <p>Fades, tapers and classic cuts, shaped to your head and your week — not a template.</p>
-                <i class="fa fa-whatsapp" aria-hidden="true"></i>
-            </div>
-            <div class="service-card">
-                <i class="fa-solid fa-pump-soap"></i>
-                <h3>Hot Towel Shave</h3>
-                <p>A straight razor shave finished with hot towels and balm, done the old way, on purpose.</p>
-            </div>
-            <div class="service-card">
-                <i class="fa-solid fa-mound"></i>
-                <h3>Beard Sculpting</h3>
-                <p>Lined, shaped and conditioned so your beard actually looks intentional.</p>
-            </div>
-            <div class="service-card">
-                <i class="fa-solid fa-child"></i>
-                <h3>Kids Cuts</h3>
-                <p>Patient hands, quick chairs, and a first haircut they won't dread the next one.</p>
-            </div>
+
+    <span class="eyebrow center">
+        <i class="fa-solid fa-star"></i> Our Services
+    </span>
+
+    <h2>Choose Your Service</h2>
+
+    <div class="tabs">
+
+        <!-- Radio Buttons -->
+        <input type="radio" name="service-tab" id="tab-men" class="tab-input" checked>
+        <input type="radio" name="service-tab" id="tab-women" class="tab-input">
+        <input type="radio" name="service-tab" id="tab-nails" class="tab-input">
+
+        <!-- Labels -->
+        <div class="tab-labels">
+            <label for="tab-men" class="tab-label">Men</label>
+            <label for="tab-women" class="tab-label">Women</label>
+            <label for="tab-nails" class="tab-label">Nails</label>
         </div>
-    </section>
+
+        <!-- MEN -->
+        <div class="tab-panel" id="panel-men">
+
+            <div class="service-menu-grid">
+
+                <div class="service-menu-card">
+                    <i class="fa-solid fa-scissors"></i>
+                    <h3>Hair Cut</h3>
+                    <p>Clean and professional haircut.</p>
+                    <span class="price">5,000 RWF</span>
+                    <a href="https://wa.me/250793155144?text=Hello%20La%20Familia%20Barbers,%20I%20would%20like%20to%20book%20Hair%20Cut." target="_blank" class="book-btn">Book Now</a>
+                </div>
+
+                <div class="service-menu-card">
+                    <i class="fa-solid fa-pump-soap"></i>
+                    <h3>Black Shampoo</h3>
+                    <p>Premium shampoo treatment.</p>
+                    <span class="price">8,000 RWF</span>
+                    <a href="https://wa.me/250793155144?text=Hello,%20I%20want%20Black%20Shampoo." target="_blank" class="book-btn">Book Now</a>
+                </div>
+
+                <div class="service-menu-card">
+                    <i class="fa-solid fa-spray-can-sparkles"></i>
+                    <h3>Black Shampoo + Chemical</h3>
+                    <p>Professional hair treatment.</p>
+                    <span class="price">13,000 RWF</span>
+                    <a href="https://wa.me/250793155144?text=Hello,%20I%20want%20Black%20Shampoo%20+%20Chemical." target="_blank" class="book-btn">Book Now</a>
+                </div>
+
+                <div class="service-menu-card">
+                    <i class="fa-solid fa-face-smile"></i>
+                    <h3>Mask</h3>
+                    <p>Refreshing facial treatment.</p>
+                    <span class="price">5,000 RWF</span>
+                    <a href="https://wa.me/250793155144?text=Hello,%20I%20want%20a%20Mask." target="_blank" class="book-btn">Book Now</a>
+                </div>
+
+                <div class="service-menu-card">
+                    <i class="fa-solid fa-child"></i>
+                    <h3>Kid Hair Cut</h3>
+                    <p>Professional haircut for children.</p>
+                    <span class="price">4,000 RWF</span>
+                    <a href="https://wa.me/250793155144?text=Hello,%20I%20want%20a%20Kid%20Haircut." target="_blank" class="book-btn">Book Now</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- WOMEN -->
+        <div class="tab-panel" id="panel-women">
+
+            <div class="service-menu-grid">
+
+                <div class="service-menu-card">
+                    <i class="fa-solid fa-spa"></i>
+                    <h3>Gusuka</h3>
+                    <p>Professional women's hair service.</p>
+                    <span class="price">25,000 RWF</span>
+                    <a href="https://wa.me/250793155144?text=Hello,%20I%20want%20Gusuka." target="_blank" class="book-btn">Book Now</a>
+                </div>
+
+                <div class="service-menu-card">
+                    <i class="fa-solid fa-water"></i>
+                    <h3>Jacuzzi</h3>
+                    <p>Relaxing hair treatment.</p>
+                    <span class="price">25,000 RWF</span>
+                    <a href="https://wa.me/250793155144?text=Hello,%20I%20want%20Jacuzzi." target="_blank" class="book-btn">Book Now</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- NAILS -->
+        <div class="tab-panel" id="panel-nails">
+
+            <div class="service-menu-grid">
+
+                <div class="service-menu-card"><h3>Nail Cut</h3><span class="price">5,000 RWF</span><a class="book-btn" target="_blank" href="https://wa.me/250793155144?text=I%20want%20Nail%20Cut">Book Now</a></div>
+
+                <div class="service-menu-card"><h3>Gel Removal</h3><span class="price">5,000 RWF</span><a class="book-btn" target="_blank" href="https://wa.me/250793155144?text=I%20want%20Gel%20Removal">Book Now</a></div>
+
+                <div class="service-menu-card"><h3>Acrylic Removal</h3><span class="price">10,000 RWF</span><a class="book-btn" target="_blank" href="https://wa.me/250793155144?text=I%20want%20Acrylic%20Removal">Book Now</a></div>
+
+                <div class="service-menu-card"><h3>Regular Polish Hand & Feet</h3><span class="price">25,000 RWF</span><a class="book-btn" target="_blank" href="https://wa.me/250793155144?text=I%20want%20Regular%20Polish">Book Now</a></div>
+
+                <div class="service-menu-card"><h3>Gel Polish Hand & Feet</h3><span class="price">25,000 RWF</span><a class="book-btn" target="_blank" href="https://wa.me/250793155144?text=I%20want%20Gel%20Polish">Book Now</a></div>
+
+                <div class="service-menu-card"><h3>Gel Polish + Builder</h3><span class="price">30,000 RWF</span><a class="book-btn" target="_blank" href="https://wa.me/250793155144?text=I%20want%20Gel%20Builder">Book Now</a></div>
+
+                <div class="service-menu-card"><h3>Acrylic Design</h3><span class="price">45k–60k</span><a class="book-btn" target="_blank" href="https://wa.me/250793155144?text=I%20want%20Acrylic%20Design">Book Now</a></div>
+
+                <div class="service-menu-card"><h3>3D Nails</h3><span class="price">70k–80k</span><a class="book-btn" target="_blank" href="https://wa.me/250793155144?text=I%20want%203D%20Nails">Book Now</a></div>
+
+                <div class="service-menu-card"><h3>French Tip</h3><span class="price">50k–65k</span><a class="book-btn" target="_blank" href="https://wa.me/250793155144?text=I%20want%20French%20Tip">Book Now</a></div>
+
+                <div class="service-menu-card"><h3>Ombre Nails</h3><span class="price">35k–50k</span><a class="book-btn" target="_blank" href="https://wa.me/250793155144?text=I%20want%20Ombre%20Nails">Book Now</a></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 <section id="about" class="about">
         <div class="about-photo">
       <video width="360" height="640" autoplay loop muted playsinline style="object-fit: cover; border-radius: 12px;">
@@ -100,81 +989,22 @@
             </ul>
         </div>
     </section>
-
     
-<!-- Haircuts Gallery Section -->
-<div class="hg-gallery-container">
-  <!-- Top Row: 3 Images -->
-  <div class="hg-row hg-row-top">
-    <div class="hg-card">
-      <img src="images/download (13).jpg" alt="Buzz Cut Haircut">
-    </div>
-    <div class="hg-card">
-      <img src="images/toolong.jpg" alt="Taper Fade Haircut">
-    </div>
-    <div class="hg-card">
-      <img src="images/sorry-kenny.webp" alt="Braids Hairstyle">
-    </div>
-  </div>
+    
 
-  <!-- Bottom Row: 2 Images -->
-  <div class="hg-row hg-row-bottom">
-    <div class="hg-card">
-      <img src="images/We always look after our clients.jpg" alt="Colored Hair Style">
-    </div>
-    <div class="hg-card">
-      <img src="images/download (7).webp" alt="Afro Hairstyle">
-    </div>
-  </div>
-</div>
+    <footer class="footer">
+        <p>&copy; <span id="year"></span> La Familia Barbers. Cut with pride.</p>
+        <style>
+  .fa-instagram { color: #E4405F; } /* flat approximation, see gradient below for true look */
+  .fa-facebook  { color: #1877F2; }
+  .fa-tiktok    { color: #000000; } /* TikTok's primary mark is black */  
 
-    <footer class="lf-footer">
-  <div class="lf-footer-grid">
-    <div>
-      <div class="lf-logo">
-        LA FAMILIA
-        <span class="lf-logo-sub">BARBER SHOP</span>
-      </div>
-    </div>
+</style>
 
-    <div>
-      <h4>WORKING HOURS</h4>
-      <div class="lf-row"><span class="lf-label">Mon – Fri:</span><span class="lf-value">8.00 – 19.00</span></div>
-      <div class="lf-row"><span class="lf-label">Saturday:</span><span class="lf-value">8.00 – 18.00</span></div>
-      <div class="lf-row"><span class="lf-label">Sunday:</span><span class="lf-value">Closed</span></div>
-    </div>
-
-    <div>
-      <h4>LOCATION</h4>
-      <address>remera kisimenti ikaze house,<br>KIGALI, RWANDA</address>
-      <div class="lf-contact">lafamiliabarbers@gmail.com</div>
-      <div class="lf-contact">+250</div>
-    </div>
-
-    <div>
-      <h4>SUBSCRIBE</h4>
-      <div class="lf-subscribe">
-        <input type="email" placeholder="Your Email">
-        <button aria-label="Subscribe">@</button>
-      </div>
-      <div class="lf-socials">
-        <a href="#" aria-label="Twitter">𝕏</a>
-        <a href="#" aria-label="Facebook">f</a>
-        <a href="#" aria-label="LinkedIn">in</a>
-        <a href="#" aria-label="Instagram">◎</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="lf-footer-bottom">
-    <div>Copyright © 2026 La Familia Barber Shop. All Rights Reserved</div>
-    <div class="lf-footer-links">
-      <a href="#">Terms of Use</a>
-      <a href="#">Privacy Policy</a>
-    </div>
-  </div>
-</footer>
-
+<a href="https://instagram.com/yourpage" target="_blank"><i class="fa-brands fa-instagram fa-2x"></i></a>
+  <a href="https://facebook.com/yourpage" target="_blank"><i class="fa-brands fa-facebook fa-2x"></i></a>
+  <a href="https://tiktok.com/@yourpage" target="_blank"><i class="fa-brands fa-tiktok fa-2x"></i></a>
+    </footer>
     
 
     <script>
