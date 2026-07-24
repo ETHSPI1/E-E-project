@@ -445,73 +445,73 @@ a {
     color: var(--gold);
 }
 /* Container with Gold Background */
-.hg-gallery-container {
-  background: linear-gradient(100deg, var(--gold-light), var(--gold));
-  padding: 40px 20px;
-  border-radius: 16px; /* Optional: rounds the outer gold container */
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  max-width: 1000px;
-  margin: 0 auto; /* Centers gallery on your existing page */
-  box-sizing: border-box;
+.gallery{
+    width:90%;
+    margin:80px auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
 }
 
-/* Row Layouts */
-.hg-gallery-container .hg-row {
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  width: 100%;
+.gallery-item{
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
 }
 
-/* Top Row: 3 Columns */
-.hg-gallery-container .hg-row-top .hg-card {
-  flex: 1 1 calc(33.333% - 16px);
-  max-width: 320px;
+.gallery-item img{
+    width:100%;
+    height:350px;
+    object-fit:cover;
+    display:block;
+    transition:.5s;
 }
 
-/* Bottom Row: 2 Columns */
-.hg-gallery-container .hg-row-bottom .hg-card {
-  flex: 1 1 calc(50% - 12px);
-  max-width: 400px;
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.65);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+
+    padding:30px;
+
+    opacity:0;
+    transition:.5s;
 }
 
-/* Card Styling & Rounded Corners */
-.hg-gallery-container .hg-card {
-  background-color: #ffffff;
-  padding: 12px;
-  border-radius: 20px; /* Outer card rounded corners */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
+.overlay h3{
+    color:#fff;
+    font-size:32px;
+    margin-bottom:10px;
+
+    transform:translateY(40px);
+    transition:.5s;
 }
 
-.hg-gallery-container .hg-card img {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 12px; /* Inner image rounded corners */
-  display: block;
+.overlay p{
+    color:#ddd;
+    font-size:17px;
+    line-height:1.6;
+
+    transform:translateY(40px);
+    transition:.6s;
 }
 
-/* Responsive adjustment for Mobile screens */
-@media (max-width: 768px) {
-  .hg-gallery-container .hg-row {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .hg-gallery-container .hg-row-top .hg-card,
-  .hg-gallery-container .hg-row-bottom .hg-card {
-    max-width: 100%;
-    width: 100%;
-  }
+.gallery-item:hover img{
+    transform:scale(1.1);
 }
 
+.gallery-item:hover .overlay{
+    opacity:1;
+}
+
+.gallery-item:hover h3,
+.gallery-item:hover p{
+    transform:translateY(0);
+}
 /* ===== Footer ===== */
 .lf-footer{
   --gold:#c9a24b;
