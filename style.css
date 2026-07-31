@@ -29,6 +29,9 @@
 html {
     scroll-behavior: smooth;
 }
+.logo-top{
+    border-radius: 10px;
+}
 
 body {
     font-family: var(--font-body);
@@ -445,7 +448,39 @@ a {
     color: var(--gold);
 }
 /* Container with Gold Background */
+.gallery-section {
+    text-align: center;
+    padding: 60px 0;
+}
 
+.gallery-title {
+    font-family: "Times New Roman", serif;
+    font-size: 70px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color:#d4af37;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+    position: relative;
+    text-align: center;
+}
+
+.gallery-title .gold {
+    color: #d4af37; /* Gold */
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-top: 40px;
+}
+
+.gallery-title::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(to right, #d4af37, white, #d4af37);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
 
 .gallery{
     width:90%;
