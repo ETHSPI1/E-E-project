@@ -3,7 +3,7 @@
 /* ===== Tokens ===== */
 :root {
     --ink: #1c1a16;
-    --muted: #6b6459;
+    --muted: #100b05;
     --line: #e9e1cf;
     --bg: #ffffff;
     --ivory: #fffdf8;
@@ -556,12 +556,14 @@ a {
   --gold-light:#e6c878;
   --lf-line:#3a2f1a;
   --lf-muted:#b8a582;
-  background:#0a0a0a;
+  background:var(--muted);
   color:#ffffff;
   padding:64px 48px 0;
   font-family:'Segoe UI', Arial, sans-serif;
   height: 100%;
   margin-top: 69px;
+
+
 }
 .footer-social{
     display:flex;
